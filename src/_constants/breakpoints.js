@@ -6,4 +6,4 @@ export const BREAKPOINTS = {
 	DESKTOP_SM: 1280,
 	DESKTOP_MD: 1440,
 	DESKTOP_LG: 1920,
-}
+};

@@ -1,53 +1,54 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from 'vite';
 
-import path from 'path';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
-import rollupConfig from './rollup.config';
+import rollupConfig from './rollup.config.js';
 
-const isProdMode = process.env.NODE_ENV === 'production';
-const root = path.resolve(__dirname, 'src');
+
+const isProductionMode = process.env.NODE_ENV === 'production';
+
+const rootDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'src');
+const buildDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'dist');
 
 // https://vitejs.dev/config/
 
 export default defineConfig({
-  root,
-  base: './',
-  server: {
-    port: 6866,
-    host: '0.0.0.0',
-    watch: {
-      usePolling: true,
-    },
-  },
-  resolve: {
-    alias: [
-      {
-        find: /^~]/,
-        replacement: '',
-      },
-      {
-        find: '@root',
-        replacement: path.resolve(__dirname, 'src'),
-      },
-      {
-        find: '@app',
-        replacement: path.resolve(__dirname, 'src', 'js'),
-      },
-    ],
-    extensions: ['.css', '.scss', '.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
-  },
-  build: {
-    emptyOutDir: true,
-    assetsDir: 'assets',
-    minify: isProdMode,
-    outDir: path.resolve(__dirname, 'dist'),
-    sourcemap: !isProdMode,
-    rollupOptions: rollupConfig,
-    polyfillModulePreload: false,
-    target: 'esnext',
-  },
-  plugins: [],
-  css: {
-    devSourcemap: true,
-  },
+	root: rootDirectory,
+	base: './',
+	server: {
+		port: 6866,
+		host: '0.0.0.0',
+		watch: {
+			usePolling: true,
+		},
+	},
+	resolve: {
+		alias: [
+			{
+				find: /^~]/,
+				replacement: '',
+			},
+			{
+				find: '@root',
+				replacement: rootDirectory,
+			},
+		],
+		extensions: ['.css', '.scss', '.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+	},
+	build: {
+		emptyOutDir: true,
+		assetsDir: 'assets',
+		minify: isProductionMode,
+		outDir: buildDirectory,
+		sourcemap: !isProductionMode,
+		rollupOptions: rollupConfig,
+		polyfillModulePreload: false,
+		target: 'esnext',
+	},
+	plugins: [],
+	css: {
+		devSourcemap: true,
+	},
 });

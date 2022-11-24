@@ -1,50 +1,56 @@
-import {getBabelOutputPlugin} from '@rollup/plugin-babel';
+import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 
-import {resolve} from 'path';
-import {readdirSync} from 'fs'
+import path, { resolve } from 'node:path';
+import { readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 
-const ROOT_DIRECTORY = 'src'
-const COMPONENTS_DIRECTORY = 'components'
-const COMPONENTS_ROOT_FILE_NAME = 'index'
+const ROOT_DIRECTORY = 'src';
+const COMPONENTS_DIRECTORY = 'components';
+const COMPONENTS_ROOT_FILE_NAME = 'index';
 
-const getRollupInput = () => {
-	const componentsPath = resolve(ROOT_DIRECTORY, COMPONENTS_DIRECTORY)
-	const componentsDirs = readdirSync(componentsPath)
+const EXTENSIONS = {
+	SCRIPTS: 'js',
+	STYLES: 'css',
+};
 
-	const input = {}
+const generateRollupInput = () => {
+	const componentsPath = resolve(ROOT_DIRECTORY, COMPONENTS_DIRECTORY);
+	const componentsDirectories = readdirSync(componentsPath);
 
-	componentsDirs.forEach(componentDir => {
-			const scriptFile = readdirSync(resolve(componentsPath, componentDir))
-				.find(file => file.endsWith('.js',) || file.endsWith('.ts'))
+	const input = {};
 
-			input[componentDir] = resolve(__dirname, componentsPath, componentDir, scriptFile)
-		}
-	)
+	componentsDirectories.forEach((componentDirectory) => {
+		input[componentDirectory] = resolve(
+			path.dirname(fileURLToPath(import.meta.url)),
+			componentsPath,
+			componentDirectory,
+			`${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.SCRIPTS}`,
+		);
+	});
 
-	return input
-}
+	return input;
+};
 
 
 export default {
-	input: getRollupInput(),
+	input: generateRollupInput(),
 	output: {
 		format: 'cjs',
-		entryFileNames: `${COMPONENTS_DIRECTORY}/[name]/${COMPONENTS_ROOT_FILE_NAME}.js`,
-		chunkFileNames: `${COMPONENTS_DIRECTORY}/[name]/${COMPONENTS_ROOT_FILE_NAME}-[hash].js`,
-		assetFileNames: ({name}) => {
+		entryFileNames: `${COMPONENTS_DIRECTORY}/[name]/${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.SCRIPTS}`,
+		chunkFileNames: `${COMPONENTS_DIRECTORY}/[name]/${COMPONENTS_ROOT_FILE_NAME}-[hash].${EXTENSIONS.SCRIPTS}`,
+		assetFileNames: ({ name }) => {
+			const isComponentStyle = name.startsWith(COMPONENTS_DIRECTORY) && name.endsWith(`${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.STYLES}`);
 
-			const isComponentStyle = name.startsWith(COMPONENTS_DIRECTORY) && name.endsWith(`${COMPONENTS_ROOT_FILE_NAME}.css`)
-
-			if(isComponentStyle) {
-				const symbolsToRemove = new RegExp(new RegExp(`${COMPONENTS_DIRECTORY}|${COMPONENTS_ROOT_FILE_NAME}.css|/`, 'gi'))
+			if (isComponentStyle) {
+				const symbolsToRemove = new RegExp(new RegExp(`${COMPONENTS_DIRECTORY}|${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.STYLES}|/`, 'gi'));
 				const componentName = name.replaceAll(symbolsToRemove, '');
-				return `${COMPONENTS_DIRECTORY}/${componentName}/${COMPONENTS_ROOT_FILE_NAME}.css`;
+				return `${COMPONENTS_DIRECTORY}/${componentName}/${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.STYLES}`;
 			}
 
 
 			if (/\.css$/i.test(name ?? '')) {
-				return `styles/[name].css`;
+				return 'styles/[name].css';
 			}
 
 			if (/\.(png|jpe?g|gif|webp)$/i.test(name ?? '')) {
@@ -59,9 +65,9 @@ export default {
 				return 'fonts/[name][extname]';
 			}
 
-			const extType = name.split('.').at(1);
+			const extensionType = name.split('.').at(1);
 
-			return `${extType}/[name][extname]`;
+			return `${extensionType}/[name][extname]`;
 		},
 	},
 	plugins: [
