@@ -1,4 +1,6 @@
-import {isOddOrEven} from "../_utilities";
+import './index.scss'
+
+import {isOddOrEven} from "../../_utilities";
 
 
 const initCounter = () => {
