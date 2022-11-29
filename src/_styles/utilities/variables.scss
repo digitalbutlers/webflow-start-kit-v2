@@ -1,0 +1,32 @@
+/**
+* Highly recommend using css variables instead of sass variables where it is possible.
+* The reason why is because you can not edit a value of sass variable,
+* but you can edit css variable value on media queries.
+* Example: change color value if theme is dark or base-padding on small screens.
+* */
+
+
+// TODO: Work on breakpoints https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/
+$breakpoints: (
+	'small':  ( max-width:  767px ),
+	'medium': ( max-width:  991px ),
+	'large':  ( min-width: 1280px )
+) !default;
+
+
+
+:root {
+	--color-background-primary: hsl(0, 0%, 100%);
+	--color-background-secondary: hsl(0, 0%, 97%);
+	--color-text-primary: hsl(0, 0%, 13%);
+	--color-text-secondary: hsl(0, 0%, 35%);
+	--color-outline-primary: hsl(0, 0%, 53%);
+	--color-outline-secondary: hsl(0, 0%, 73%);
+	--color-error: hsl(0, 100%, 74%);
+
+	--padding-base: 2.5rem;
+
+	--radius-base: .25rem;
+
+	--transition-default: all .3s ease 0s;
+}
