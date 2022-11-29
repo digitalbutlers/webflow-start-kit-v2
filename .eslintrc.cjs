@@ -8,14 +8,11 @@ module.exports = {
 		'airbnb-base',
 		'plugin:unicorn/recommended',
 	],
-	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
-	plugins: [
-		'@typescript-eslint',
-	],
+	ignorePatterns: ['dist/**/*.*'],
 	rules: {
 		'linebreak-style': 0,
 		'no-multiple-empty-lines': [1, { max: 2 }],
