@@ -4,30 +4,19 @@ import path, { resolve } from 'node:path';
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
+import { DIRECTORIES, FILE_EXTENSIONS, FILE_NAMES } from './config.js';
 
-const ROOT_DIRECTORY = 'src';
-const COMPONENTS_DIRECTORY = 'components';
-const ASSETS_DIRECTORY = 'assets';
-const IMAGES_DIRECTORY = 'images';
-const FONTS_DIRECTORY = 'fonts';
-
-const COMPONENTS_ROOT_FILE_NAME = 'index';
-const GLOBAL_FILES_NAME = 'main';
-
-const EXTENSIONS = {
-	SCRIPTS: 'js',
-	STYLES: 'css',
-};
+import { deploy } from './deployment.config.js';
 
 const GLOBAL_SCRIPT_PATH = resolve(
 	path.dirname(fileURLToPath(import.meta.url)),
-	ROOT_DIRECTORY,
-	`${GLOBAL_FILES_NAME}.${EXTENSIONS.SCRIPTS}`,
+	DIRECTORIES.ROOT,
+	`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
 );
 
 
 const generateInput = () => {
-	const componentsPath = resolve(ROOT_DIRECTORY, COMPONENTS_DIRECTORY);
+	const componentsPath = resolve(DIRECTORIES.ROOT, DIRECTORIES.COMPONENTS);
 	const componentsDirectories = readdirSync(componentsPath);
 
 	const input = {
@@ -39,7 +28,7 @@ const generateInput = () => {
 			path.dirname(fileURLToPath(import.meta.url)),
 			componentsPath,
 			componentDirectory,
-			`${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.SCRIPTS}`,
+			`${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
 		);
 	});
 
@@ -50,38 +39,38 @@ const generateEntryFileNames = ({ facadeModuleId }) => {
 	const isMainScript = facadeModuleId === GLOBAL_SCRIPT_PATH.replaceAll('\\', '/');
 
 	return isMainScript
-		? `${GLOBAL_FILES_NAME}.${EXTENSIONS.SCRIPTS}`
-		: `${COMPONENTS_DIRECTORY}/[name]/${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.SCRIPTS}`;
+		? `${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`
+		: `${DIRECTORIES.COMPONENTS}/[name]/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`;
 };
 
 const generateAssetFileNames = ({ name }) => {
-	const isComponentStyle = name.startsWith(COMPONENTS_DIRECTORY) && name.endsWith(`${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.STYLES}`);
+	const isComponentStyle = name.startsWith(DIRECTORIES.COMPONENTS) && name.endsWith(`${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.STYLES}`);
 
 	if (isComponentStyle) {
-		const symbolsToRemove = new RegExp(`${COMPONENTS_DIRECTORY}|${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.STYLES}|/`, 'gi');
+		const symbolsToRemove = new RegExp(`${DIRECTORIES.COMPONENTS}|${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.STYLES}|/`, 'gi');
 		const componentName = name.replaceAll(symbolsToRemove, '');
-		return `${COMPONENTS_DIRECTORY}/${componentName}/${COMPONENTS_ROOT_FILE_NAME}.${EXTENSIONS.STYLES}`;
+		return `${DIRECTORIES.COMPONENTS}/${componentName}/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.STYLES}`;
 	}
 
-	const isMainStyle = name === `${GLOBAL_FILES_NAME}.${EXTENSIONS.STYLES}`;
+	const isMainStyle = name === `${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.STYLES}`;
 	if (isMainStyle) {
-		return `${GLOBAL_FILES_NAME}.${EXTENSIONS.STYLES}`;
+		return `${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.STYLES}`;
 	}
 
 	if (/\.(png|jpe?g|gif|webp|svg)$/i.test(name ?? '')) {
-		return `${ASSETS_DIRECTORY}/${IMAGES_DIRECTORY}/[name][extname]`;
+		return `${DIRECTORIES.ASSETS}/${DIRECTORIES.IMAGES}/[name][extname]`;
 	}
 
 	if (/\.(woff(2)?|ttf|eot)$/i.test(name ?? '')) {
-		return `${ASSETS_DIRECTORY}/${FONTS_DIRECTORY}/[name][extname]`;
+		return `${DIRECTORIES.ASSETS}/${DIRECTORIES.FONTS}/[name][extname]`;
 	}
 
 	const extension = name.split('.').at(-1);
 
-	return `${ASSETS_DIRECTORY}/${extension}/[name][extname]`;
+	return `${DIRECTORIES.ASSETS}/${extension}/[name][extname]`;
 };
 
-export default {
+const rollupConfig = ({ modeDirectory, isDeployMode }) => ({
 	input: generateInput(),
 	output: {
 		format: 'cjs',
@@ -92,5 +81,19 @@ export default {
 		getBabelOutputPlugin({
 			presets: ['@babel/preset-env'],
 		}),
+		{
+			name: 'db-ftp-deploy-plugin',
+			writeBundle(options, bundle) {
+				if (!isDeployMode) return;
+
+				const files = Object
+					.keys(bundle)
+					.map((file) => `${modeDirectory}/${file}`);
+
+				deploy(files);
+			},
+		},
 	],
-};
+});
+
+export default rollupConfig;
