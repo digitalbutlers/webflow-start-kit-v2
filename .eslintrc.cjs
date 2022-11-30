@@ -18,6 +18,13 @@ module.exports = {
 		'no-multiple-empty-lines': [1, { max: 2 }],
 		indent: [1, 'tab'],
 		'no-tabs': [1, { allowIndentationTabs: true }],
+		'max-len': [1, {
+			code: 120,
+			ignoreUrls: true,
+			ignoreStrings: true,
+			ignoreTrailingComments: true,
+			ignoreTemplateLiterals: true,
+		}],
 		'function-paren-newline': [1, { minItems: 3 }],
 		'import/extensions': [2, 'always', { ignorePackages: true }],
 		'import/prefer-default-export': 0,
