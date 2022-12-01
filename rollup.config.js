@@ -14,13 +14,25 @@ const GLOBAL_SCRIPT_PATH = resolve(
 	`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
 );
 
+const WEBFLOW_SCRIPT_PATH = resolve(
+	path.dirname(fileURLToPath(import.meta.url)),
+	DIRECTORIES.ROOT,
+	`${FILE_NAMES.WEBFLOW}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
+);
 
-const generateInput = () => {
+
+const generateInput = ({ isWebflowMode }) => {
+	if (isWebflowMode) {
+		return {
+			[FILE_NAMES.WEBFLOW]: WEBFLOW_SCRIPT_PATH,
+		};
+	}
+
 	const componentsPath = resolve(DIRECTORIES.ROOT, DIRECTORIES.COMPONENTS);
 	const componentsDirectories = readdirSync(componentsPath);
 
 	const input = {
-		main: GLOBAL_SCRIPT_PATH,
+		[FILE_NAMES.GLOBAL]: GLOBAL_SCRIPT_PATH,
 	};
 
 	componentsDirectories.forEach((componentDirectory) => {
@@ -36,11 +48,17 @@ const generateInput = () => {
 };
 
 const generateEntryFileNames = ({ facadeModuleId }) => {
-	const isMainScript = facadeModuleId === GLOBAL_SCRIPT_PATH.replaceAll('\\', '/');
+	const isWebflowScript = facadeModuleId === WEBFLOW_SCRIPT_PATH.replaceAll('\\', '/');
+	if (isWebflowScript) {
+		return `${FILE_NAMES.WEBFLOW}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`;
+	}
 
-	return isMainScript
-		? `${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`
-		: `${DIRECTORIES.COMPONENTS}/[name]/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`;
+	const isMainScript = facadeModuleId === GLOBAL_SCRIPT_PATH.replaceAll('\\', '/');
+	if (isMainScript) {
+		return `${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`;
+	}
+
+	return `${DIRECTORIES.COMPONENTS}/[name]/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`;
 };
 
 const generateAssetFileNames = ({ name }) => {
@@ -70,8 +88,8 @@ const generateAssetFileNames = ({ name }) => {
 	return `${DIRECTORIES.ASSETS}/${extension}/[name][extname]`;
 };
 
-const rollupConfig = ({ modeDirectory, isDeployMode }) => ({
-	input: generateInput(),
+const rollupConfig = ({ modeDirectory, isDeployMode, isWebflowMode }) => ({
+	input: generateInput({ isWebflowMode }),
 	output: {
 		format: 'cjs',
 		entryFileNames: generateEntryFileNames,

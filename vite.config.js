@@ -8,15 +8,19 @@ import path from 'node:path';
 
 import rollupConfig from './rollup.config.js';
 
+import { MODES, DEPLOY_POSTFIX, DIRECTORIES } from './config.js';
 
-const rootDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'src');
-const buildDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'dist');
+
+const rootDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), DIRECTORIES.ROOT);
+const buildDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), DIRECTORIES.BUILD);
 
 
 export default defineConfig(({ mode }) => {
-	const isProductionMode = mode.includes('production');
-	const isDeployMode = mode.includes('deploy');
-	const modeDirectory = mode.replaceAll('-deploy', '');
+	const isDeployMode = mode.endsWith(DEPLOY_POSTFIX);
+	const isWebflowMode = mode === MODES.WEBFLOW;
+	const isProductionMode = mode.includes(MODES.PRODUCTION) || isWebflowMode;
+
+	const modeDirectory = mode.replaceAll(DEPLOY_POSTFIX, '');
 
 	return {
 		root: rootDirectory,
@@ -47,7 +51,7 @@ export default defineConfig(({ mode }) => {
 			minify: isProductionMode,
 			outDir: `${buildDirectory}/${modeDirectory}`,
 			sourcemap: !isProductionMode,
-			rollupOptions: rollupConfig({ modeDirectory, isDeployMode }),
+			rollupOptions: rollupConfig({ modeDirectory, isDeployMode, isWebflowMode }),
 			polyfillModulePreload: false,
 			target: 'esnext',
 		},

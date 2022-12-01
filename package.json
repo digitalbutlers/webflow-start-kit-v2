@@ -4,6 +4,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
+		"webflow": "vite build --mode webflow",
 		"prod": "vite build --mode production",
 		"dev": "vite build --mode development",
 		"prod-deploy": "vite build --mode production-deploy",
