@@ -52,7 +52,9 @@ export default defineConfig(({ mode }) => {
 			outDir: `${buildDirectory}/${modeDirectory}`,
 			sourcemap: !isProductionMode,
 			rollupOptions: rollupConfig({ modeDirectory, isDeployMode, isWebflowMode }),
-			polyfillModulePreload: false,
+			modulePreload: {
+				polyfill: false,
+			},
 			target: 'esnext',
 		},
 		plugins: [],
