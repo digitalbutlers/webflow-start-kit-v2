@@ -1,6 +1,6 @@
 /**
  * 1. Build this file once you filled config files.
- * 2. Move content from built webflow.js file to project custom code section.
+ * 2. Copy-paste content from built webflow.js file to project custom code section.
  * 3. Use data-component-id and data-component-has-styles attributes on your elements to connect scripts and styles.
  * */
 

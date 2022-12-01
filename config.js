@@ -1,6 +1,7 @@
 /**
- * All you need to do here is change 'NAME' variable to your project name.
- * It will be used for generating a project directory at cdn.digitalbutlers.me
+ * All you need to do here is change 'NAME' variable to your project name
+ * (make it the same as package's name).
+ * It will be used for generating a project's directory at cdn.digitalbutlers.me
  * so it MUST be in kebab-case.
  * */
 
