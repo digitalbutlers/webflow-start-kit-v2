@@ -1,3 +1,9 @@
+/**
+ * This is a component script file.
+ * Import all the scripts and component styles (optional) you need here.
+ * */
+
+
 import './index.scss';
 
 import { isOddOrEven } from '../../_utilities/index.js';
