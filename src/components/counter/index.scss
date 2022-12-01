@@ -1,6 +1,7 @@
 @import "./styles/style1.scss";
 @import "./styles/style2.scss";
 
-.test {
-	color: red;
+[data-counter-state] {
+	background-color: white;
+	border: currentColor 2px solid;
 }

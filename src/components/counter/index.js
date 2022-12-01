@@ -7,15 +7,19 @@ const initCounter = () => {
 
 	if (!button) return;
 
-	const counter = 0;
+	let counter = 0;
 
 	const setCounter = (count) => {
+		button.dataset.counterState = isOddOrEven(count);
 		button.innerHTML = `Count is ${counter} (${isOddOrEven(count)})`;
 	};
 
-	button.addEventListener('click', () => setCounter(counter + 1));
+	button.addEventListener('click', () => {
+		counter += 1;
+		setCounter(counter);
+	});
 
-	setCounter(0);
+	setCounter(counter);
 };
 
-document.addEventListener('load', initCounter);
+initCounter();
