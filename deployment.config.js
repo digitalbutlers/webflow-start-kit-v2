@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import FtpDeploy from 'ftp-deploy';
 
-
 import { FTP, DIRECTORIES } from './config.js';
 import { USERNAME, PASSWORD } from './config.local.js';
 
@@ -29,20 +28,20 @@ export const deploy = (files) => {
 		sftp: false,
 	};
 
-	/* eslint-disable no-console */
-	console.log('\n|DEPLOY START  DEPLOY START  DEPLOY START  DEPLOY START  DEPLOY START  DEPLOY START  DEPLOY STA|');
-
 	ftpDeployer
 		.deploy(deployConfig)
 		.then(() => {
-			console.log('\nDeployed files:');
-			console.log(files);
-			console.log('\n|DEPLOY END  DEPLOY END  DEPLOY END  DEPLOY END  DEPLOY END  DEPLOY END  DEPLOY END  DEPLOY END|');
+			// eslint-disable-next-line no-console
+			console.log('\u001B[32m', `
+███████████████████████████████████████████
+██               DEPLOYED!               ██
+███████████████████████████████████████████
+			`);
 		})
 		.catch((error) => {
+			// eslint-disable-next-line no-console
 			console.error(error);
 		});
-	/* eslint-enable no-console */
 };
 
 

@@ -1,3 +1,10 @@
+/**
+ * All you need to do here is change 'NAME' variable to your project name.
+ * It will be used for generating a project directory at cdn.digitalbutlers.me
+ * so it MUST be in kebab-case.
+ * */
+
+
 export const NAME = 'webflow-start-kit-v2';
 export const HOSTNAME = 'cdn.digitalbutlers.me';
 export const PATHNAME = 'projects';
