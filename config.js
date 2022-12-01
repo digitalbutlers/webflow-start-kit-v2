@@ -1,12 +1,12 @@
 export const NAME = 'webflow-start-kit-v2';
-export const HOSTNAME = 'digitalbutlers.me';
-export const PATHNAME = 'any_scripts';
-export const CUSTOM_CODE_DIRECTORY = `https://${HOSTNAME}/${PATHNAME}/${NAME}`;
+export const HOSTNAME = 'cdn.digitalbutlers.me';
+export const PATHNAME = 'projects';
+export const CDN_REMOTE_ROOT = `https://${HOSTNAME}/${PATHNAME}/${NAME}`;
 
 export const FTP = {
-	HOST: 'dbutlers.beget.tech',
+	HOST: '148.251.76.226',
 	PORT: 21,
-	REMOTE_ROOT: `/${HOSTNAME}/public_html/${PATHNAME}/${NAME}/`,
+	REMOTE_ROOT: `${PATHNAME}/${NAME}/`,
 };
 
 export const DIRECTORIES = {
