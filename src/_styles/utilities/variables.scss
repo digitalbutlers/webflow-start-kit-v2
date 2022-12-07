@@ -26,6 +26,9 @@ $breakpoints: (
 
 	--padding-base: 2.5rem;
 
+	--container-max-width: 100rem;
+	--container-width: min(var(--container-max-width), calc(100% - 2 * var(--padding-base)));
+
 	--radius-base: .25rem;
 
 	--transition-default: all .3s ease 0s;
