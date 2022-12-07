@@ -5,7 +5,7 @@ import { FTP, DIRECTORIES } from './config.js';
 import { USERNAME, PASSWORD } from './config.local.js';
 
 
-export const deploy = (files) => {
+export const deploy = (modeDirectory, files) => {
 	const ftpDeployer = new FtpDeploy();
 
 	const deployConfig = {
@@ -13,9 +13,9 @@ export const deploy = (files) => {
 		password: PASSWORD,
 		host: FTP.HOST,
 		port: FTP.PORT,
-		remoteRoot: `${FTP.REMOTE_ROOT}/`,
+		remoteRoot: `${FTP.REMOTE_ROOT}/${modeDirectory}`,
 
-		localRoot: `${process.cwd()}/${DIRECTORIES.BUILD}`,
+		localRoot: `${process.cwd()}/${DIRECTORIES.BUILD}/${modeDirectory}`,
 		include: files,
 		exclude: [
 			'node_modules/**',
@@ -23,7 +23,7 @@ export const deploy = (files) => {
 			'.git/**',
 		],
 
-		deleteRemote: false,
+		deleteRemote: true,
 		forcePasv: true,
 		sftp: false,
 	};

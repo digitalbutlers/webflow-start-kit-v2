@@ -48,6 +48,7 @@ const insertScript = ({
 	path,
 }) => {
 	const script = document.createElement('script');
+	script.setAttribute('type', 'module');
 	script.setAttribute('src', path);
 	parent.append(script);
 };

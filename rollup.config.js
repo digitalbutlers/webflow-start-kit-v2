@@ -75,6 +75,10 @@ const generateAssetFileNames = ({ name }) => {
 		return `${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.STYLES}`;
 	}
 
+	if (/\.(css)$/i.test(name ?? '')) {
+		return `${DIRECTORIES.ASSETS}/${DIRECTORIES.STYLES}/[name].[hash][extname]`;
+	}
+
 	if (/\.(png|jpe?g|gif|webp|svg)$/i.test(name ?? '')) {
 		return `${DIRECTORIES.ASSETS}/${DIRECTORIES.IMAGES}/[name][extname]`;
 	}
@@ -91,7 +95,7 @@ const generateAssetFileNames = ({ name }) => {
 const rollupConfig = ({ modeDirectory, isDeployMode, isWebflowMode }) => ({
 	input: generateInput({ isWebflowMode }),
 	output: {
-		format: 'cjs',
+		format: 'es',
 		entryFileNames: generateEntryFileNames,
 		assetFileNames: generateAssetFileNames,
 	},
@@ -105,10 +109,9 @@ const rollupConfig = ({ modeDirectory, isDeployMode, isWebflowMode }) => ({
 				if (!isDeployMode) return;
 
 				const files = Object
-					.keys(bundle)
-					.map((file) => `${modeDirectory}/${file}`);
+					.keys(bundle);
 
-				deploy(files);
+				deploy(modeDirectory, files);
 			},
 		},
 	],

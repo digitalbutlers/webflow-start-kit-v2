@@ -30,6 +30,8 @@ export const DIRECTORIES = {
 	BUILD: 'dist',
 	COMPONENTS: 'components',
 	ASSETS: 'assets',
+	SCRIPTS: 'scripts',
+	STYLES: 'styles',
 	IMAGES: 'images',
 	FONTS: 'fonts',
 };

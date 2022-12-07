@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
 		},
 		build: {
 			emptyOutDir: true,
-			assetsDir: 'assets',
+			assetsDir: `${DIRECTORIES.ASSETS}/${DIRECTORIES.SCRIPTS}`,
 			minify: isProductionMode,
 			outDir: `${buildDirectory}/${modeDirectory}`,
 			sourcemap: !isProductionMode,
