@@ -7,11 +7,13 @@
 
 import './index.scss';
 
-import { isOddOrEven } from '../../_utilities/index.js';
+import { isOddOrEven, sayHello } from '../../_utilities/index.js';
 
 
 const COMPONENT_SELECTOR = '[data-component-id="counter"]';
 
+
+sayHello('counter.js');
 
 const initCounter = () => {
 	const button = document.querySelector(`${COMPONENT_SELECTOR} [data-role="counter-button"]`);

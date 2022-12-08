@@ -52,6 +52,7 @@ export default defineConfig(({ mode }) => {
 			outDir: `${buildDirectory}/${modeDirectory}`,
 			sourcemap: !isProductionMode,
 			rollupOptions: rollupConfig({ modeDirectory, isDeployMode, isWebflowMode }),
+			assetsInlineLimit: 0,
 			modulePreload: {
 				polyfill: false,
 			},
