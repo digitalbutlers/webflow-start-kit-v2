@@ -10,7 +10,7 @@ import './index.scss';
 import { isOddOrEven } from '../../_utilities/index.js';
 
 
-const COMPONENT_SELECTOR = '[data-component-id="swiper-1"]';
+const COMPONENT_SELECTOR = '[data-component-id="counter"]';
 
 
 const initCounter = () => {
