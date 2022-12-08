@@ -2,3 +2,15 @@
 @import 'swiper/scss/navigation';
 @import 'swiper/scss/pagination';
 @import 'swiper/scss/scrollbar';
+
+[data-component-id="swiper-2"] {
+	--swiper-theme-color: var(--color-accent-2);
+
+	.swiper-slide {
+		padding: var(--padding-base) calc(var(--padding-base) * 2);
+		background-color: var(--color-background-secondary);
+		border-radius: var(--radius-base);
+	}
+}
+
+

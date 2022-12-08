@@ -16,6 +16,9 @@ $breakpoints: (
 
 
 :root {
+	--color-accent-1: hsl(0, 100%, 50%);
+	--color-accent-2: hsl(52, 100%, 50%);
+	--color-accent-3: hsl(211, 100%, 36%);
 	--color-background-primary: hsl(0, 0%, 100%);
 	--color-background-secondary: hsl(0, 0%, 97%);
 	--color-text-primary: hsl(0, 0%, 13%);
@@ -23,11 +26,13 @@ $breakpoints: (
 	--color-outline-primary: hsl(0, 0%, 53%);
 	--color-outline-secondary: hsl(0, 0%, 73%);
 	--color-error: hsl(0, 100%, 74%);
+	--color-success: hsl(130, 100%, 74%);
 
-	--padding-base: 2.5rem;
+	--padding-base: 4rem;
 
 	--container-max-width: 100rem;
-	--container-width: min(var(--container-max-width), calc(100% - 2 * var(--padding-base)));
+	--container-padding: calc(--padding-base * 0.75);
+	--container-width: min(var(--container-max-width), calc(100% - 2 * var(--container-padding)));
 
 	--radius-base: .25rem;
 

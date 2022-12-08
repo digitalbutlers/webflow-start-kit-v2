@@ -1,13 +1,27 @@
 /**
  * This is a component styles file. It MUST be imported in the component script file.
- * You may white styles here, but also may use styles subdirectory to create smaller chunks and then import them there.
+ * If you need to import libraries styles for your component, import them here.
+ * You may white styles here, but also may use styles/ subdirectory to create smaller chunks and then import them there.
+ *
+ * Highly recommended wrapping your styles with [data-component-id="COMPONENT-NAME"] selector.
+ * It helps to avoid affecting other components.
  * */
 
 
-@import "./styles/style1.scss";
-@import "./styles/style2.scss";
+[data-component-id="counter"] {
+	[data-counter-state] {
+		background-color: var(--color-background-primary);
+		border: currentColor 2px solid;
 
-[data-counter-state] {
-	background-color: white;
-	border: currentColor 2px solid;
+		&[data-counter-state="odd"] {
+			color: var(--color-accent-1);
+		}
+
+		&[data-counter-state="even"] {
+			color: var(--color-accent-3);
+			background-color: var(--color-accent-2);
+		}
+	}
 }
+
+
