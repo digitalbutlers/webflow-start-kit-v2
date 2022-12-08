@@ -7,7 +7,7 @@ const COMPONENT_SELECTOR = '[data-component-id="swiper-1"]';
 
 
 // eslint-disable-next-line no-unused-vars
-const swiper2 = new Swiper(`${COMPONENT_SELECTOR} .swiper`, {
+const swiper1 = new Swiper(`${COMPONENT_SELECTOR} .swiper`, {
 	modules: [Navigation],
 
 	navigation: {
