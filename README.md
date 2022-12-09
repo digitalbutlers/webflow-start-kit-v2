@@ -2,11 +2,10 @@
 
 ## Installation
 
-1. Clone this repository.
-2. Delete `.git` directory.
-3. Update name in `package.json` file.
-4. Follow the instructions from `config.js` and `config.local.js.example` files.
-5. Run `pnpm install`.
+1. Run `degit digitalbutlers/webflow-start-kit-v2 --force`. (Install `degit` globally if needed).
+2. Update name in `package.json` file.
+3. Follow the instructions from `config.js` and `config.local.js.example` files.
+4. Run `pnpm install`.
 
 ## How to use
 
