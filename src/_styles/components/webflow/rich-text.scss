@@ -1,0 +1,14 @@
+.w-richtext {
+	ol,
+	ul {
+		overflow: visible;
+	}
+
+	& > :first-child {
+		margin-top: 0;
+	}
+
+	& > :last-child {
+		margin-bottom: 0;
+	}
+}

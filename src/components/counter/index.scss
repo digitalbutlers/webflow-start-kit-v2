@@ -7,8 +7,36 @@
  * It helps to avoid affecting other components.
  * */
 
+// If you want to use mq (media-query) or any other mixin you have to import them first.
+@import "../../_styles/utilities/mixins.scss";
+
 
 [data-component-id="counter"] {
+	.input {
+		@include autofill(white, 1px solid currentColor)
+	}
+	.input-2 {
+		@include autofill(red)
+	}
+
+	.container {
+		position: relative;
+		&::before {
+			content: "default breakpoint";
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline-end: var(--container-padding);
+
+			@include mq($from: mobile-sm) {
+				content: "mobile-sm and higher"
+			}
+
+			@include mq($from: tablet-sm, $until: desktop-sm) {
+				content: "from tablet-sm up to desktop-sm"
+			}
+		}
+	}
+
 	[data-counter-state] {
 		background-color: var(--color-background-primary);
 		border: currentColor 2px solid;

@@ -6,3 +6,9 @@
 
 export { isOddOrEven } from './is-odd-or-even.js';
 export { sayHello } from './say-hello.js';
+export {
+	lockScroll,
+	unlockScroll,
+	toggleScroll,
+	isScrollLocked,
+} from './scroll-lock.js';

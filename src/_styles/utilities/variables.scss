@@ -1,18 +1,12 @@
 /**
 * Highly recommend using css variables instead of sass variables where it is possible.
-* The reason why is because you can not edit a value of sass variable,
-* but you can edit css variable value on media queries.
-* Example: change color value if theme is dark or base-padding on small screens.
+* The reasons why:
+* 1. You can not edit a value of sass variable, but you can edit css variable value on media queries.
+*    Example: change color value if theme is dark or --padding-base on small screens.
+* 2. You can read and write css variables using javascript.
+*    Example: use --js-scrollbar-width to set body padding when scroll is locked.
+* 3. You don't have to import css variables to other files to use it.
 * */
-
-
-// TODO: Work on breakpoints https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/
-$breakpoints: (
-	'small':  ( max-width:  767px ),
-	'medium': ( max-width:  991px ),
-	'large':  ( min-width: 1280px )
-) !default;
-
 
 
 :root {
@@ -31,10 +25,15 @@ $breakpoints: (
 	--padding-base: 4rem;
 
 	--container-max-width: 100rem;
-	--container-padding: calc(--padding-base * 0.75);
+	--container-padding: calc(var(--padding-base) * 0.75);
 	--container-width: min(var(--container-max-width), calc(100% - 2 * var(--container-padding)));
 
 	--radius-base: .25rem;
 
 	--transition-default: all .3s ease 0s;
+
+	--scrollbar-width: 40px;
+	--js-scrollbar-width: 0px; // Use this variable to set padding-inline-end to body when locking scroll.
+	--scrollbar-thumb-color: var(--color-accent-1);
+	--scrollbar-background-color: var(--color-background-primary)
 }

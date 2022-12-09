@@ -3,4 +3,5 @@ export const CLASSES = {
 	DISABLED: 'js--disabled',
 	OPEN: 'js--open',
 	CLOSED: 'js--closed',
+	LOCKED: 'js--locked',
 };

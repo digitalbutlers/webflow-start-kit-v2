@@ -4,6 +4,6 @@
 	transition: var(--transition-default);
 }
 
-a, button, label, input {
-	cursor: pointer;
+.visually-hidden {
+	@include visually-hidden;
 }
