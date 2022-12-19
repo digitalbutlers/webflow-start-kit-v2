@@ -62,21 +62,14 @@ const generateEntryFileNames = ({ facadeModuleId }) => {
 };
 
 const generateAssetFileNames = ({ name }) => {
-	const isComponentStyle = name.startsWith(DIRECTORIES.COMPONENTS) && name.endsWith(`${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.STYLES}`);
-
-	if (isComponentStyle) {
-		const symbolsToRemove = new RegExp(`${DIRECTORIES.COMPONENTS}|${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.STYLES}|/`, 'gi');
-		const componentName = name.replaceAll(symbolsToRemove, '');
-		return `${DIRECTORIES.COMPONENTS}/${componentName}/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.STYLES}`;
-	}
-
 	const isMainStyle = name === `${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.STYLES}`;
+
 	if (isMainStyle) {
-		return `${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.STYLES}`;
+		return name;
 	}
 
 	if (/\.(css)$/i.test(name ?? '')) {
-		return `${DIRECTORIES.ASSETS}/${DIRECTORIES.STYLES}/[name].[hash][extname]`;
+		return `${DIRECTORIES.ASSETS}/${DIRECTORIES.STYLES}/[name].[extname]`;
 	}
 
 	if (/\.(png|jpe?g|gif|webp|svg)$/i.test(name ?? '')) {
