@@ -1,7 +1,7 @@
 /**
  * 1. Create a copy of this file named 'config.local.js' (This file is ignored by git).
  * 2. Change variables values to your ftp username and password.
- * 3. Done 🎉. You're breathtaking! After these steps deploy commands should work.
+ * 3. Done 🎉. You're breathtaking!
  * */
 
 export const USERNAME = 'ftp username';

@@ -1,15 +1,8 @@
-/**
- * All you need to do here is change 'NAME' variable to your project name
- * (make it the same as package's name).
- * It will be used for generating a project's directory at cdn.digitalbutlers.me
- * so it MUST be in kebab-case.
- * */
+import { name } from './package.json';
 
-
-export const NAME = 'webflow-start-kit-v2';
 export const HOSTNAME = 'cdn.digitalbutlers.me';
 export const PATHNAME = 'projects';
-export const CDN_REMOTE_ROOT = `https://${HOSTNAME}/${PATHNAME}/${NAME}`;
+export const CDN_REMOTE_ROOT = `https://${HOSTNAME}/${PATHNAME}/${name}`;
 
 export const MODES = {
 	DEVELOPMENT: 'development',
@@ -22,7 +15,7 @@ export const DEPLOY_POSTFIX = '-deploy';
 export const FTP = {
 	HOST: '148.251.76.226',
 	PORT: 21,
-	REMOTE_ROOT: `${PATHNAME}/${NAME}/`,
+	REMOTE_ROOT: `${PATHNAME}/${name}/`,
 };
 
 export const DIRECTORIES = {

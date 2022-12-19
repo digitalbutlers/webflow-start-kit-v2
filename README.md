@@ -3,8 +3,8 @@
 ## Installation
 
 1. Run `degit digitalbutlers/webflow-start-kit-v2 --force`. (Install `degit` globally if needed).
-2. Update name in `package.json` file.
-3. Follow the instructions from `config.js` and `config.local.js.example` files.
+2. Update name in `package.json` file (Must be kebab-case, unique).
+3. Follow the instructions from `config.local.js.example` file.
 4. Run `pnpm install`.
 
 ## How to use
