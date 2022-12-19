@@ -1,7 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 // Documentation: https://vitejs.dev/config/
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from 'vite';
+import eslint from 'vite-plugin-eslint';
 
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -58,7 +60,13 @@ export default defineConfig(({ mode }) => {
 			},
 			target: 'esnext',
 		},
-		plugins: [],
+		plugins: [
+			eslint({
+				fix: true,
+				failOnError: true,
+				failOnWarning: isProductionMode,
+			}),
+		],
 		css: {
 			devSourcemap: true,
 		},
