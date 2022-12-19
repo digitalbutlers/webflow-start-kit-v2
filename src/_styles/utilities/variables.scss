@@ -28,12 +28,12 @@
 	--container-padding: calc(var(--padding-base) * 0.75);
 	--container-width: min(var(--container-max-width), calc(100% - 2 * var(--container-padding)));
 
-	--radius-base: .25rem;
+	--radius-base: 0.25rem;
 
-	--transition-default: all .3s ease 0s;
+	--transition-default: all 0.3s ease 0s;
 
 	--scrollbar-width: 40px;
-	--js-scrollbar-width: 0px; // Use this variable to set padding-inline-end to body when locking scroll.
+	--js-scrollbar-width: 0; // Use this variable to set padding-inline-end to body when locking scroll.
 	--scrollbar-thumb-color: var(--color-accent-1);
-	--scrollbar-background-color: var(--color-background-primary)
+	--scrollbar-background-color: var(--color-background-primary);
 }
