@@ -1,7 +1,10 @@
 import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 
-import './index.scss';
+import { insertStyles } from '../../_utilities/index.js';
+import styles from './index.scss?inline';
 
+
+insertStyles(styles);
 
 const COMPONENT_SELECTOR = '[data-component-id="swiper-2"]';
 

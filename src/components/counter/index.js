@@ -5,10 +5,11 @@
  * */
 
 
-import './index.scss';
+import { insertStyles, isOddOrEven, sayHello } from '../../_utilities/index.js';
+import styles from './index.scss?inline';
 
-import { isOddOrEven, sayHello } from '../../_utilities/index.js';
 
+insertStyles(styles);
 
 const COMPONENT_SELECTOR = '[data-component-id="counter"]';
 

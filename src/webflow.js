@@ -1,7 +1,7 @@
 /**
  * 1. Build this file once you filled config files.
  * 2. Copy-paste content from built webflow.js file to project custom code section.
- * 3. Use data-component-id and data-component-has-styles attributes on your elements to connect scripts and styles.
+ * 3. Use data-component-id attribute on your elements to connect scripts.
  * */
 
 
@@ -22,24 +22,17 @@ const getFilesPaths = () => {
 	const scripts = [
 		`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
 	];
-	const styles = [
-		`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.STYLES}`,
-	];
 
 	document.querySelectorAll(`[${ATTRIBUTES.COMPONENT_ID}]`)
 		.forEach((componentElement) => {
 			const componentId = componentElement.getAttribute(ATTRIBUTES.COMPONENT_ID);
-			const hasStyles = componentElement.getAttribute(ATTRIBUTES.HAS_STYLES_FILE) === 'true';
 
 			scripts.push(`${DIRECTORIES.COMPONENTS}/${componentId}/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`);
-			if (hasStyles) {
-				styles.push(`${DIRECTORIES.COMPONENTS}/${componentId}/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.STYLES}`);
-			}
 		});
 
 	return {
 		scripts: [...new Set(scripts)],
-		styles: [...new Set(styles)],
+		styles: [`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.STYLES}`],
 	};
 };
 

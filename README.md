@@ -40,5 +40,3 @@ that you already have `main.js` and `main.scss` files connected to the website.
 To connect component's script you have to add `[data-component-id="component-name"]`
 attribute to component's html element where `component-name` equals the component directory name
 (`/src/components/component-name/index.js`).
-
-If component has styles file too, add `[data-component-has-styles="true"]` attribute to component's html element.
