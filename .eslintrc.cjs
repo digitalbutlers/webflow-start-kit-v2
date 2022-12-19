@@ -27,6 +27,8 @@ module.exports = {
 		}],
 		'function-paren-newline': [1, { minItems: 3 }],
 		'import/extensions': [2, 'always', { ignorePackages: true }],
+		// TODO (import/no-unresolved): Use https://github.com/johvin/eslint-import-resolver-alias for handling inline imports
+		'import/no-unresolved': [2, { ignore: ['\\.?inline$'] }],
 		'import/prefer-default-export': 0,
 		'unicorn/no-for-loop': 0,
 		'unicorn/no-array-for-each': 0,
