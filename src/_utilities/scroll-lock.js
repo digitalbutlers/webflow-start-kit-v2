@@ -11,7 +11,7 @@ const setScrollbarWidth = () => {
 export const isScrollLocked = () => document.body.classList.contains(CLASSES.LOCKED);
 
 export const lockScroll = () => {
-	if (isScrollLocked) {
+	if (isScrollLocked()) {
 		return;
 	}
 
