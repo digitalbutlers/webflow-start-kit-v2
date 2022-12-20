@@ -13,9 +13,10 @@
 
 [data-component-id="counter"] {
 	.heading {
-		background: linear-gradient(hsla(163, 65%, 41%, 0.3), hsl(156, 100%, 25%));
+		background: linear-gradient(to bottom, var(--color-accent-1), var(--color-accent-2));
 		-webkit-background-clip: text;
-		font-size: 72px;
+		background-clip: text;
+		margin-block: 0;
 		-webkit-text-fill-color: transparent;
 	}
 

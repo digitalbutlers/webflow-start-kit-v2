@@ -1,4 +1,7 @@
 ::selection {
-	background-color: var(--color-accent-1);
-	color: var(--color-background-primary);
+	-webkit-background-clip: unset !important;
+	background-clip: unset !important;
+	background-color: var(--color-accent-1) !important;
+	color: var(--color-background-primary) !important;
+	-webkit-text-fill-color: var(--color-background-primary) !important;
 }
