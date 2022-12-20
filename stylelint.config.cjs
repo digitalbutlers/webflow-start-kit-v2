@@ -1,26 +1,29 @@
 module.exports = {
-	extends: [
-		'stylelint-config-recommended-scss',
-		'stylelint-config-idiomatic-order',
-	],
+	extends: ['stylelint-config-recommended-scss', 'stylelint-config-idiomatic-order'],
 	plugins: [
 		'stylelint-scss',
 		'stylelint-color-format',
 		'stylelint-high-performance-animation',
 		'stylelint-declaration-block-no-ignored-properties',
 		'stylelint-use-logical-spec',
+		'stylelint-prettier',
 	],
 	rules: {
-		'string-quotes': 'double',
-		indentation: 'tab',
+		'prettier/prettier': true,
 		'selector-class-pattern': false,
 		'scss/at-function-pattern': false,
-		'max-nesting-depth': [3, {
-			ignore: ['pseudo-classes'],
-		}],
-		'value-no-vendor-prefix': [true, {
-			ignoreValues: ['box'],
-		}],
+		'max-nesting-depth': [
+			3,
+			{
+				ignore: ['pseudo-classes'],
+			},
+		],
+		'value-no-vendor-prefix': [
+			true,
+			{
+				ignoreValues: ['box'],
+			},
+		],
 		'order/properties-alphabetical-order': false,
 		'scss/at-import-partial-extension': false,
 		'scss/at-import-partial-extension-blacklist': false,

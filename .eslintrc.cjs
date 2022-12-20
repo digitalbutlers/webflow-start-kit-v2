@@ -4,28 +4,15 @@ module.exports = {
 		es2021: true,
 		node: true,
 	},
-	extends: [
-		'airbnb-base',
-		'plugin:unicorn/recommended',
-	],
+	extends: ['airbnb-base', 'plugin:unicorn/recommended', 'prettier'],
+	plugins: ['prettier'],
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
 	ignorePatterns: ['dist/**/*.*'],
 	rules: {
-		'linebreak-style': 0,
-		'no-multiple-empty-lines': [1, { max: 2 }],
-		indent: [1, 'tab'],
-		'no-tabs': [1, { allowIndentationTabs: true }],
-		'max-len': [1, {
-			code: 120,
-			ignoreUrls: true,
-			ignoreStrings: true,
-			ignoreTrailingComments: true,
-			ignoreTemplateLiterals: true,
-		}],
-		'function-paren-newline': [1, { minItems: 3 }],
+		'prettier/prettier': [1],
 		'import/extensions': [2, 'always', { ignorePackages: true }],
 		// TODO (import/no-unresolved): Use https://github.com/johvin/eslint-import-resolver-alias for handling inline imports
 		'import/no-unresolved': [2, { ignore: ['\\.?inline$'] }],
