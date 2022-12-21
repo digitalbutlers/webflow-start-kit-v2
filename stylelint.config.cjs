@@ -27,6 +27,7 @@ module.exports = {
 		'order/properties-alphabetical-order': false,
 		'scss/at-import-partial-extension': false,
 		'scss/at-import-partial-extension-blacklist': false,
+		'color-named': 'never',
 		'color-format/format': {
 			format: 'hsl',
 		},
