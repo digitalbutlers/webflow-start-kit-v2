@@ -1,6 +1,5 @@
 import { CLASSES } from '../_constants/index.js';
 
-
 const setScrollbarWidth = () => {
 	const rootElement = document.documentElement;
 	const scrollWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -23,9 +22,4 @@ export const unlockScroll = () => {
 	document.body.classList.remove(CLASSES.LOCKED);
 };
 
-export const toggleScroll = () => (
-	document.body.classList.contains(CLASSES.LOCKED)
-		? unlockScroll()
-		: lockScroll()
-);
-
+export const toggleScroll = () => (document.body.classList.contains(CLASSES.LOCKED) ? unlockScroll() : lockScroll());

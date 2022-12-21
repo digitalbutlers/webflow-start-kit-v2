@@ -3,25 +3,24 @@
  * Do not white styles here, use _styles directory instead.
  * */
 
+@import './_styles/utilities/variables.scss';
+@import './_styles/utilities/functions.scss';
+@import './_styles/utilities/mixins.scss';
 
-@import "./_styles/utilities/variables.scss";
-@import "./_styles/utilities/functions.scss";
-@import "./_styles/utilities/mixins.scss";
+@import './_styles/base/reset.scss';
+@import './_styles/base/fonts.scss';
+@import './_styles/base/accessibility.scss';
 
-@import "./_styles/base/reset.scss";
-@import "./_styles/base/fonts.scss";
-@import "./_styles/base/accessibility.scss";
+@import './_styles/layouts/section.scss';
+@import './_styles/layouts/container.scss';
 
-@import "./_styles/layouts/section.scss";
-@import "./_styles/layouts/container.scss";
+@import './_styles/components/webflow/rich-text.scss';
+@import './_styles/components/webflow/badge.scss';
 
-@import "./_styles/components/webflow/rich-text.scss";
-@import "./_styles/components/webflow/badge.scss";
-
-@import "./_styles/components/body.scss";
-@import "./_styles/components/scrollbar.scss";
-@import "./_styles/components/selection.scss";
-@import "./_styles/components/heading.scss";
-@import "./_styles/components/button.scss";
-@import "./_styles/components/link.scss";
-@import "./_styles/components/textarea.scss";
+@import './_styles/components/body.scss';
+@import './_styles/components/scrollbar.scss';
+@import './_styles/components/selection.scss';
+@import './_styles/components/heading.scss';
+@import './_styles/components/button.scss';
+@import './_styles/components/link.scss';
+@import './_styles/components/textarea.scss';

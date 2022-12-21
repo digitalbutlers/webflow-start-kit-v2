@@ -1,13 +1,9 @@
-import {
-	lockScroll, unlockScroll, toggleScroll, insertStyles,
-} from '../../_utilities/index.js';
+import { lockScroll, unlockScroll, toggleScroll, insertStyles } from '../../_utilities/index.js';
 import styles from './index.scss?inline';
-
 
 insertStyles(styles);
 
 const COMPONENT_SELECTOR = '[data-component-id="scroll-control-panel"]';
-
 
 const initScrollControlPanel = () => {
 	const lockButton = document.querySelector(`${COMPONENT_SELECTOR} [data-action="lock-scroll"]`);

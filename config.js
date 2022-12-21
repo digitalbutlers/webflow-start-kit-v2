@@ -45,4 +45,3 @@ export const ATTRIBUTES = {
 	COMPONENT_ID: 'data-component-id',
 	HAS_STYLES_FILE: 'data-component-has-styles',
 };
-

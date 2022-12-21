@@ -3,5 +3,4 @@
  * It can be modified swiper class, custom-built accordions etc.
  * */
 
-
 export {};

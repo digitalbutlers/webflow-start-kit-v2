@@ -4,31 +4,20 @@
  * 3. Use data-component-id attribute on your elements to connect scripts.
  * */
 
+import { ATTRIBUTES, CDN_REMOTE_ROOT, MODES, DIRECTORIES, FILE_NAMES, FILE_EXTENSIONS } from '../config.js';
 
-import {
-	ATTRIBUTES,
-	CDN_REMOTE_ROOT,
-	MODES,
-	DIRECTORIES,
-	FILE_NAMES,
-	FILE_EXTENSIONS,
-} from '../config.js';
-
-const modeSubdirectory = (window.location.origin.includes('webflow.io')
-	? MODES.DEVELOPMENT
-	: MODES.PRODUCTION);
+const modeSubdirectory = window.location.origin.includes('webflow.io') ? MODES.DEVELOPMENT : MODES.PRODUCTION;
 
 const getFilesPaths = () => {
-	const scripts = [
-		`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
-	];
+	const scripts = [`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`];
 
-	document.querySelectorAll(`[${ATTRIBUTES.COMPONENT_ID}]`)
-		.forEach((componentElement) => {
-			const componentId = componentElement.getAttribute(ATTRIBUTES.COMPONENT_ID);
+	document.querySelectorAll(`[${ATTRIBUTES.COMPONENT_ID}]`).forEach((componentElement) => {
+		const componentId = componentElement.getAttribute(ATTRIBUTES.COMPONENT_ID);
 
-			scripts.push(`${DIRECTORIES.COMPONENTS}/${componentId}/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`);
-		});
+		scripts.push(
+			`${DIRECTORIES.COMPONENTS}/${componentId}/${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`
+		);
+	});
 
 	return {
 		scripts: [...new Set(scripts)],
@@ -36,20 +25,14 @@ const getFilesPaths = () => {
 	};
 };
 
-const insertScript = ({
-	parent = document.body,
-	path,
-}) => {
+const insertScript = ({ parent = document.body, path }) => {
 	const script = document.createElement('script');
 	script.setAttribute('type', 'module');
 	script.setAttribute('src', path);
 	parent.append(script);
 };
 
-const insertStyle = ({
-	parent = document.head,
-	path,
-}) => {
+const insertStyle = ({ parent = document.head, path }) => {
 	const style = document.createElement('link');
 	style.setAttribute('rel', 'stylesheet');
 	style.setAttribute('href', path);
@@ -58,19 +41,17 @@ const insertStyle = ({
 const insertFiles = () => {
 	const { scripts, styles } = getFilesPaths();
 
-	scripts
-		.forEach((scriptPath) => {
-			insertScript({
-				path: `${CDN_REMOTE_ROOT}/${modeSubdirectory}/${scriptPath}`,
-			});
+	scripts.forEach((scriptPath) => {
+		insertScript({
+			path: `${CDN_REMOTE_ROOT}/${modeSubdirectory}/${scriptPath}`,
 		});
+	});
 
-	styles
-		.forEach((stylePath) => {
-			insertStyle({
-				path: `${CDN_REMOTE_ROOT}/${modeSubdirectory}/${stylePath}`,
-			});
+	styles.forEach((stylePath) => {
+		insertStyle({
+			path: `${CDN_REMOTE_ROOT}/${modeSubdirectory}/${stylePath}`,
 		});
+	});
 };
 
 insertFiles();

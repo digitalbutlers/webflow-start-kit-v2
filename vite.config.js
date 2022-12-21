@@ -12,10 +12,8 @@ import rollupConfig from './rollup.config.js';
 
 import { MODES, DEPLOY_POSTFIX, DIRECTORIES } from './config.js';
 
-
 const rootDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), DIRECTORIES.ROOT);
 const buildDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), DIRECTORIES.BUILD);
-
 
 export default defineConfig(({ mode }) => {
 	const isDeployMode = mode.endsWith(DEPLOY_POSTFIX);
@@ -27,7 +25,8 @@ export default defineConfig(({ mode }) => {
 	return {
 		root: rootDirectory,
 		base: './',
-		server: { // not used rn, but may be needed in the future
+		server: {
+			// not used rn, but may be needed in the future
 			port: 6866,
 			host: '0.0.0.0',
 			watch: {

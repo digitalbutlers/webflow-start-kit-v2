@@ -11,15 +11,14 @@ import { deploy } from './deployment.config.js';
 const GLOBAL_SCRIPT_PATH = resolve(
 	path.dirname(fileURLToPath(import.meta.url)),
 	DIRECTORIES.ROOT,
-	`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
+	`${FILE_NAMES.GLOBAL}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`
 );
 
 const WEBFLOW_SCRIPT_PATH = resolve(
 	path.dirname(fileURLToPath(import.meta.url)),
 	DIRECTORIES.ROOT,
-	`${FILE_NAMES.WEBFLOW}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
+	`${FILE_NAMES.WEBFLOW}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`
 );
-
 
 const generateInput = ({ isWebflowMode }) => {
 	if (isWebflowMode) {
@@ -40,7 +39,7 @@ const generateInput = ({ isWebflowMode }) => {
 			path.dirname(fileURLToPath(import.meta.url)),
 			componentsPath,
 			componentDirectory,
-			`${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`,
+			`${FILE_NAMES.COMPONENT_ROOT}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`
 		);
 	});
 
@@ -101,8 +100,7 @@ const rollupConfig = ({ modeDirectory, isDeployMode, isWebflowMode }) => ({
 			writeBundle(options, bundle) {
 				if (!isDeployMode) return;
 
-				const files = Object
-					.keys(bundle);
+				const files = Object.keys(bundle);
 
 				deploy(modeDirectory, files);
 			},

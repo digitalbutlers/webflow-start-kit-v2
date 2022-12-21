@@ -1,17 +1,15 @@
-@import "swiper/scss";
-@import "swiper/scss/navigation";
-@import "swiper/scss/pagination";
-@import "swiper/scss/scrollbar";
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+@import 'swiper/scss/scrollbar';
 
-[data-component-id="swiper-2"] {
+[data-component-id='swiper-2'] {
 	--swiper-theme-color: var(--color-accent-2);
 
 	.swiper-slide {
 		border-radius: var(--radius-base);
 		background-color: var(--color-background-secondary);
 		padding-block: var(--padding-base);
-		padding-inline:	calc(var(--padding-base) * 2);
+		padding-inline: calc(var(--padding-base) * 2);
 	}
 }
-
-

@@ -3,11 +3,9 @@ import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 import { insertStyles } from '../../_utilities/index.js';
 import styles from './index.scss?inline';
 
-
 insertStyles(styles);
 
 const COMPONENT_SELECTOR = '[data-component-id="swiper-2"]';
-
 
 // eslint-disable-next-line no-unused-vars
 const swiper2 = new Swiper(`${COMPONENT_SELECTOR} .swiper`, {

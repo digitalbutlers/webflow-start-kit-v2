@@ -8,10 +8,9 @@
  * */
 
 // If you want to use mq (media-query) or any other mixin you have to import them first.
-@import "../../_styles/utilities/mixins.scss";
+@import '../../_styles/utilities/mixins.scss';
 
-
-[data-component-id="counter"] {
+[data-component-id='counter'] {
 	.heading {
 		background: linear-gradient(to bottom, var(--color-accent-1), var(--color-accent-2));
 		-webkit-background-clip: text;
@@ -32,16 +31,16 @@
 
 		&::before {
 			position: absolute;
-			content: "default breakpoint";
+			content: 'default breakpoint';
 			inset-block-start: 0;
 			inset-inline-end: var(--container-padding);
 
 			@include mq($from: mobile-sm) {
-				content: "mobile-sm and higher";
+				content: 'mobile-sm and higher';
 			}
 
 			@include mq($from: tablet-sm, $until: desktop-sm) {
-				content: "from tablet-sm up to desktop-sm";
+				content: 'from tablet-sm up to desktop-sm';
 			}
 		}
 	}
@@ -50,15 +49,13 @@
 		border: currentColor 2px solid;
 		background-color: var(--color-background-primary);
 
-		&[data-counter-state="odd"] {
+		&[data-counter-state='odd'] {
 			color: var(--color-accent-1);
 		}
 
-		&[data-counter-state="even"] {
+		&[data-counter-state='even'] {
 			background-color: var(--color-accent-2);
 			color: var(--color-accent-3);
 		}
 	}
 }
-
-

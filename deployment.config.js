@@ -4,7 +4,6 @@ import FtpDeploy from 'ftp-deploy';
 import { FTP, DIRECTORIES } from './config.js';
 import { USERNAME, PASSWORD } from './config.local.js';
 
-
 export const deploy = (modeDirectory, files) => {
 	const ftpDeployer = new FtpDeploy();
 
@@ -17,12 +16,7 @@ export const deploy = (modeDirectory, files) => {
 
 		localRoot: `${process.cwd()}/${DIRECTORIES.BUILD}/${modeDirectory}`,
 		include: files,
-		exclude: [
-			'node_modules/**',
-			'node_modules/**/.*',
-			'.git/**',
-		],
-
+		exclude: ['node_modules/**', 'node_modules/**/.*', '.git/**'],
 		deleteRemote: true,
 		forcePasv: true,
 		sftp: false,
@@ -32,16 +26,17 @@ export const deploy = (modeDirectory, files) => {
 		.deploy(deployConfig)
 		.then(() => {
 			// eslint-disable-next-line no-console
-			console.log('\u001B[32m', `
+			console.log(
+				'\u001B[32m',
+				`
 ███████████████████████████████████████████
 ██               DEPLOYED!               ██
 ███████████████████████████████████████████
-			`);
+			`
+			);
 		})
 		.catch((error) => {
 			// eslint-disable-next-line no-console
 			console.error(error);
 		});
 };
-
-

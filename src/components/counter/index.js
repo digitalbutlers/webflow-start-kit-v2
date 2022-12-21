@@ -4,15 +4,12 @@
  * Please, do not import libraries styles here, use index.scss file instead.
  * */
 
-
 import { insertStyles, isOddOrEven, sayHello } from '../../_utilities/index.js';
 import styles from './index.scss?inline';
-
 
 insertStyles(styles);
 
 const COMPONENT_SELECTOR = '[data-component-id="counter"]';
-
 
 sayHello('counter.js');
 

@@ -1,12 +1,12 @@
-@forward "sass-mq/_mq.scss" with (
+@forward 'sass-mq/_mq.scss' with (
 	$breakpoints: (
-		"mobile-sm": 340px,
-		"mobile-md": 480px,
-		"tablet-sm": 768px,
-		"tablet-md": 992px,
-		"desktop-sm": 1280px,
-		"desktop-md": 1440px,
-		"desktop-lg": 1920px,
+		'mobile-sm': 340px,
+		'mobile-md': 480px,
+		'tablet-sm': 768px,
+		'tablet-md': 992px,
+		'desktop-sm': 1280px,
+		'desktop-md': 1440px,
+		'desktop-lg': 1920px,
 	)
 );
 

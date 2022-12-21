@@ -1,8 +1,7 @@
-@import "swiper/scss";
-@import "swiper/scss/navigation";
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
 
-
-[data-component-id="swiper-1"] {
+[data-component-id='swiper-1'] {
 	--swiper-theme-color: var(--color-accent-1);
 
 	.swiper-slide {
@@ -10,6 +9,6 @@
 		border-radius: var(--radius-base);
 		background-color: var(--color-background-primary);
 		padding-block: var(--padding-base);
-		padding-inline:	calc(var(--padding-base) * 2);
+		padding-inline: calc(var(--padding-base) * 2);
 	}
 }
