@@ -54,4 +54,12 @@ const insertFiles = () => {
 	});
 };
 
-insertFiles();
+const init = () => {
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', insertFiles);
+	} else {
+		insertFiles();
+	}
+};
+
+init();
