@@ -17,6 +17,7 @@ const GLOBAL_SCRIPT_PATH = resolve(
 const WEBFLOW_SCRIPT_PATH = resolve(
 	path.dirname(fileURLToPath(import.meta.url)),
 	DIRECTORIES.ROOT,
+	DIRECTORIES.WEBFLOW,
 	`${FILE_NAMES.WEBFLOW}.${FILE_EXTENSIONS.BUILD.SCRIPTS}`
 );
 

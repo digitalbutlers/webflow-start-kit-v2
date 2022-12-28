@@ -4,3 +4,4 @@
 
 export { BREAKPOINTS } from './breakpoints.js';
 export { CLASSES } from './classes.js';
+export { CUSTOM_EVENTS } from '../../config.js';

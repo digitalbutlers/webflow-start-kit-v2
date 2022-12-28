@@ -1,7 +1,7 @@
 {
 	"name": "webflow-start-kit-v2",
 	"private": true,
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"type": "module",
 	"scripts": {
 		"webflow": "vite build --mode webflow",

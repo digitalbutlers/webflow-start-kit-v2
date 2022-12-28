@@ -27,6 +27,7 @@ export const DIRECTORIES = {
 	STYLES: 'styles',
 	IMAGES: 'images',
 	FONTS: 'fonts',
+	WEBFLOW: 'webflow',
 };
 
 export const FILE_EXTENSIONS = {
@@ -43,4 +44,8 @@ export const FILE_NAMES = {
 
 export const ATTRIBUTES = {
 	COMPONENT_ID: 'data-component-id',
+};
+
+export const CUSTOM_EVENTS = {
+	FILES_LOAD: 'customFilesLoad',
 };
